@@ -1,4 +1,5 @@
 // Native core of Garbage App (C++ / N-API). Modes: 1 = fsutil, 2 = 4 GB chunked write, 3 = RAM.
+#define NOMINMAX
 #include <napi.h>
 #include <windows.h>
 #include <algorithm>

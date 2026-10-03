@@ -7,13 +7,7 @@
     "build:native": "node-gyp rebuild --directory=native --target=33.2.0 --arch=x64 --dist-url=https://electronjs.org/headers",
     "setup": "npm install && npm run build:native",
     "start": "electron .",
-    "dist": "electron-builder --win nsis"
-  },
-  "allowScripts": {
-    "electron": true,
-    "electron-builder": true,
-    "node-gyp": true,
-    "node-addon-api": true
+    "dist": "electron-builder --win portable"
   },
   "devDependencies": {
     "electron": "33.2.0",
@@ -39,14 +33,7 @@
       "native/build/Release/garbage.node"
     ],
     "win": {
-      "target": "nsis"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "artifactName": "${productName}-${version}-Setup.exe"
+      "target": "portable"
     }
   }
 }
