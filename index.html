@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>Garbage App</title>
+<style>
+:root{--bg:#d8dbd3;--panel:#eceee8;--ink:#1c241f;--muted:#5d675f;--hazard:#f0b429;--moss:#2d4636;--bad:#b3361f}
+*{box-sizing:border-box}
+body{margin:0;height:100vh;display:flex;background:var(--bg);color:var(--ink);font:15px/1.45 "Segoe UI Variable","Segoe UI",sans-serif}
+aside{width:250px;background:var(--moss);color:#e8ece4;padding:28px 20px;display:flex;flex-direction:column;gap:6px}
+h1{font:700 44px/1 Bahnschrift,"Segoe UI",sans-serif;margin:0;color:var(--hazard);letter-spacing:-.5px}
+.sub{margin:6px 0 26px;color:#b9c4b8}
+nav button{width:100%;text-align:left;background:none;border:0;border-left:4px solid transparent;color:#e8ece4;padding:12px 14px;font:600 16px Bahnschrift,"Segoe UI",sans-serif;cursor:pointer;border-radius:0 6px 6px 0}
+nav button:hover{background:#3a5545}
+nav button.on{background:#3a5545;border-left-color:var(--hazard)}
+main{flex:1;padding:30px 36px;overflow:auto}
+h2{font:700 30px Bahnschrift,"Segoe UI",sans-serif;margin:0}
+#desc{margin:2px 0 18px;color:var(--muted)}
+.card{background:var(--panel);border-radius:10px;padding:18px 20px;margin-bottom:14px;border:1px solid #c5c9bf}
+label{display:block;font-weight:600;margin:0 0 5px}
+.card label:not(:first-child){margin-top:12px}
+.row{display:flex;gap:8px}
+input,select{flex:1;min-width:0;padding:9px 11px;border:1px solid #aab1a5;border-radius:6px;background:#fff;font:inherit;color:var(--ink)}
+select{flex:0 0 100px}
+input:focus,select:focus,button:focus-visible{outline:3px solid var(--hazard);outline-offset:1px}
+button{font:inherit;font-weight:600;padding:9px 16px;border-radius:6px;border:1px solid var(--moss);background:transparent;color:var(--moss);cursor:pointer}
+button:hover{background:#dfe4da}
+button.primary{background:var(--hazard);border-color:#b98614;color:#1c241f;padding:11px 26px}
+button.primary:hover{background:#f6c64f}
+button:disabled{opacity:.45;cursor:not-allowed}
+ul{list-style:none;margin:10px 0 0;padding:0}
+li{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed #b5bbb0}
+li button{padding:2px 10px;border-color:#b5bbb0;color:var(--bad)}
+#total{margin-top:10px;font-weight:700}
+.bar{height:22px;margin:16px 0 8px;background:#2b312d;border-radius:5px;overflow:hidden}
+#fill{display:block;height:100%;width:0;background:repeating-linear-gradient(-45deg,var(--hazard) 0 12px,#1c241f 12px 24px);transition:width .15s linear}
+#status.err{color:var(--bad);font-weight:600}
+@media (max-width:760px){body{flex-direction:column}aside{width:auto;padding:16px}nav{display:flex}}
+@media (prefers-reduced-motion:reduce){#fill{transition:none}}
+</style></head>
+<body>
+<aside><h1>Garbage</h1><div class="sub">Fill disks and RAM on purpose.</div><nav id="nav"></nav></aside>
+<main>
+  <h2 id="title"></h2><p id="desc"></p>
+  <div class="card" id="diskf">
+    <label for="folder">Save location</label>
+    <div class="row"><input id="folder" readonly placeholder="Choose a folder"><button id="pick">Browse</button></div>
+    <label for="fname">File name</label><input id="fname" value="garbage.bin">
+  </div>
+  <div class="card">
+    <label for="amt">Amount</label>
+    <div class="row"><input id="amt" placeholder="e.g. 2.5" inputmode="decimal"><select id="unit"></select><button id="add">Add to waste list</button></div>
+    <ul id="list"></ul><div id="total"></div>
+  </div>
+  <div class="card">
+    <div class="row" style="justify-content:flex-start"><button class="primary" id="go"></button><button id="rel" hidden>Release memory</button></div>
+    <div class="bar"><i id="fill"></i></div><div id="status">Ready.</div>
+  </div>
+</main>
+<script src="renderer.js"></script>
+</body></html>

@@ -1,0 +1,28 @@
+# Dependencies
+/node_modules
+
+# Build Output / Distribution
+/dist
+
+# Native C++ Build Intermediates
+/native/build
+/native/*.node
+*.iobj
+*.ipdb
+*.lastbuildstate
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+
+# Logs and Debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+builder-debug.yml
+builder-effective-config.yaml
+
+# OS specific files
+.DS_Store
+Thumbs.db

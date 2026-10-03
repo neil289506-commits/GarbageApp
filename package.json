@@ -1,0 +1,52 @@
+{
+  "name": "garbage-app",
+  "version": "1.0.0",
+  "description": "Garbage App - waste disk space and memory on purpose",
+  "main": "main.js",
+  "scripts": {
+    "build:native": "node-gyp rebuild --directory=native --target=33.2.0 --arch=x64 --dist-url=https://electronjs.org/headers",
+    "setup": "npm install && npm run build:native",
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "allowScripts": {
+    "electron": true,
+    "electron-builder": true,
+    "node-gyp": true,
+    "node-addon-api": true
+  },
+  "devDependencies": {
+    "electron": "33.2.0",
+    "node-addon-api": "^8.2.0",
+    "node-gyp": "^10.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.neil.garbageapp",
+    "productName": "Garbage App",
+    "npmRebuild": false,
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "index.html",
+      "waste.html",
+      "waste.js",
+      "waste-preload.js",
+      "native/build/Release/garbage.node"
+    ],
+    "asarUnpack": [
+      "native/build/Release/garbage.node"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "artifactName": "${productName}-${version}-Setup.exe"
+    }
+  }
+}
